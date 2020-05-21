@@ -58,7 +58,6 @@ public class TestController extends BaseController1 {
     if (ObjKit.empty(list)){
       return Ret.fail("message","查询结果为空");
     }else {
-      renderJson();
       return Ret.ok("data", sr.getVrShows(getProject(), null).get(0).getColumns());
     }
   }
