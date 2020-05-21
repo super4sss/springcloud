@@ -1,0 +1,33 @@
+
+spring:
+  application:
+    name: nacos-payment-provider-me
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/db2019?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
+#    username: root
+#    password: root
+
+#logging:
+#  level:
+#    ROOT: INFO
+#    com:
+#      xncoding: DEBUG
+#  file: D:/logs/app.log
+
+server:
+  port: 8001
+#  address: localhost
+#  compression:
+#    enabled: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

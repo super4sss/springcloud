@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: nacos-payment-provider-me
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    url: jdbc:mysql://192.168.78.247/ysd_overview?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: bim
+    password: bim@prod1&2019$
+
+#arp.jdbc-url : jdbc:mysql://172.18.148.80:10010/ysd_overview?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
+arp.jdbc-url : jdbc:mysql://localhost:9253/ysd_overview?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
+arp.username : root
+arp.password : prod1&2019$
+arp.is-dev-mode: true
+#logging:
+#  level:
+#    ROOT: INFO
+#    com:
+#      xncoding: DEBUG
+#  file: D:/logs/app.log
+
+server:
+  port: 8002
+#  address: localhost
+#  compression:
+#    enabled: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
