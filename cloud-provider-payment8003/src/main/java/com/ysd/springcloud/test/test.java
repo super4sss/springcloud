@@ -1,19 +1,25 @@
-package com.ysd.springcloud.test;
-
-import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
-import com.jfinal.plugin.druid.DruidPlugin;
-import com.ysd.springcloud.model._MappingKit;
-
-import java.util.List;
-
-/**
- * @author daixin
- * @create 2020/4/21 18:02
- */
-public class test {
-  public static void main(String[] args) {
+//package com.ysd.springcloud.test;
 //
-//    DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost/db2019?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", "root", "root");
+//import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
+//import com.jfinal.plugin.druid.DruidPlugin;
+//import com.ysd.springcloud.kit.NetKit;
+//import com.ysd.springcloud.model._MappingKit;
+//
+//import java.util.List;
+//
+///**
+// * @author daixin
+// * @create 2020/4/21 18:02
+// */
+//public class test {
+//  public static void main(String[] args) {
+////
+//    try {
+//      NetKit.SSh();
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    }
+//    DruidPlugin dp = new DruidPlugin("jdbc:mysql://localhost:9253/ysd_overview?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", "root", "prod1&2019$");
 //    ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
 //    _MappingKit.mapping(arp);
 //
@@ -22,8 +28,12 @@ public class test {
 //    dp.start();
 //    arp.start();
 //
-//    Payment fileDao = new Payment().dao();
-//    List<Payment> list = fileDao.find("select * from payment");
-//    System.out.println(list.size());
-  }
-}
+//    List list = new TestService().getVrShows("392", null);
+//    System.out.println(new TestService().getVrShows("392", null).get(0).getColumns());
+//    NetKit.close();
+////
+////    Payment fileDao = new Payment().dao();
+////    List<Payment> list = fileDao.find("select * from payment");
+////    System.out.println(list.size());
+//  }
+//}

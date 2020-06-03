@@ -1,6 +1,6 @@
 package com.ysd.springcloud.config;
 
-import com.ysd.springcloud.filter.SshFilter;
+import com.ysd.springcloud.filter.CORSFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,9 +14,11 @@ public class FilterConfig {
 
   @Bean
   public FilterRegistrationBean registrationBean() {
-    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new SshFilter());
+    FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new CORSFilter());
     filterRegistrationBean.addUrlPatterns("/*");
     return filterRegistrationBean;
   }
+
+
 }
 

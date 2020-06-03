@@ -1,0 +1,99 @@
+#@adminLayout()
+
+#define main()
+<div class="jfa-header-box" id="jfa-header-box">
+	<div class="jfa-crumbs" id="jfa-crumbs">
+		应用授权
+	</div>
+	<div class="jfa-search-box"></div>
+	#include("../../common/_admin_header_right.html")
+</div>
+
+### 内容区域
+<div class="jfa-content-box" id="jfa-content-box">
+	<div class="jfa-content" id="jfa-content">
+	
+		<div class="jfa-toolbar">
+			<a class="btn btn-primary btn-sm" href="#(ctx)/admin/app/add">
+				<i class="fa fa-plus"></i>
+				创建
+			</a>
+		</div>
+
+		<div class="jfa-table-box margin-top-30">
+			<table class="table table-bordered table-hover margin-bottom-10">
+				<thead>
+				<tr>
+					<th width="30">&nbsp;</th>
+					<th>渠道</th>
+					<th>图档编号</th>
+					<th>授权账号</th>
+					<th>授权密码</th>
+					<th>备注</th>
+					<th>启用</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				#for(x : appPage.getList())
+				<tr>
+					<th scope="row">#(for.count)</th>
+					<td>#(x.channel)</td>
+					<td>#(x.docId)</td>
+					<td>#(x.appKey)</td>
+					<td>#(x.appSecret)</td>
+					<td>#(x.remark)</td>
+					<td>
+						<input data-id="#(x.id)"
+							   #if(x.isStatusOk()) checked #end
+							   type="checkbox" class="js-switch">
+					</td>
+					<td class="jfa-operation-button">
+						<a href="#(ctx)/admin/app/edit?id=#(x.id)">
+							修改
+						</a>
+						
+						<a href="javascript:getAppConfig(#(x.channel));">
+							应用配置
+						</a>
+						
+						<a href="javascript:getAuthToken(#(x.id));">
+							访问授权
+						</a>
+
+					</td>
+				</tr>
+				#end
+				</tbody>
+			</table>
+
+			<div>
+				#@adminPaginate(appPage.pageNumber, appPage.totalPage, "#(ctx)/admin/app?p=")
+			</div>
+		</div>
+		
+		#include("_config.html")
+		#include("_token.html")
+
+	</div><!-- END OF jfa-content -->
+</div><!-- END OF jfa-content-box -->
+<style type="text/css">
+	.mac-blank {
+		border: 2px solid red;
+	}
+</style>
+<script type="text/javascript">
+	$(document).ready(function() {
+		initSwitchery(prepareAction, {size: "small", color: "red"});
+	});
+
+	function prepareAction($this, state) {
+		return {
+			url: state ? "#(ctx)/admin/app/enable" : "#(ctx)/admin/app/disable",
+			data : {
+				id: $this.attr("data-id")
+			}
+		}
+	}
+</script>
+#end

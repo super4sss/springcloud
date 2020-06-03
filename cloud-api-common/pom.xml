@@ -18,12 +18,12 @@
       <artifactId>fluent-hc</artifactId>
       <version>4.5.3</version>
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-devtools</artifactId>
-      <scope>runtime</scope>
-      <optional>true</optional>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-devtools</artifactId>-->
+<!--      <scope>runtime</scope>-->
+<!--      <optional>true</optional>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -34,12 +34,6 @@
       <groupId>cn.hutool</groupId>
       <artifactId>hutool-all</artifactId>
       <version>${hutool-all.version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.jfinal</groupId>
-      <artifactId>jfinal</artifactId>
-      <version>4.8</version>
     </dependency>
 
     <dependency>
@@ -93,15 +87,20 @@
       <artifactId>spring-context</artifactId>
       <version>5.2.2.RELEASE</version>
     </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot</artifactId>-->
+<!--      <version>2.2.2.RELEASE</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-autoconfigure</artifactId>-->
+<!--      <version>2.2.2.RELEASE</version>-->
+<!--    </dependency>-->
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot</artifactId>
-      <version>2.2.2.RELEASE</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-autoconfigure</artifactId>
-      <version>2.2.2.RELEASE</version>
+      <groupId>com.jfinal</groupId>
+      <artifactId>cos</artifactId>
+      <version>2017.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.cloud</groupId>
@@ -143,9 +142,53 @@
     </dependency>
 
     <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>com.gitee.sohnny</groupId>
       <artifactId>sojpt-boot-spring-boot-starter</artifactId>
       <version>2.5.8-4.8</version>
+    </dependency>
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>3.1</version>
+    </dependency>
+<!--word组件-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>3.17</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>ooxml-schemas</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+
+<!--    excel-->
+    <dependency>
+      <groupId>cn.afterturn</groupId>
+      <artifactId>easypoi-base</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>net.dreamlu</groupId>
+      <artifactId>JFinal-event</artifactId>
+      <version>2.2.1</version>
     </dependency>
   </dependencies>
 </project>

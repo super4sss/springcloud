@@ -1,0 +1,44 @@
+*{margin: 0;padding: 0;}
+li{list-style-type: none;}
+.clear{clear: both;}
+
+/*********banner
+ * ************************/
+.container{width: 100%;}
+.container .banner{width:100%;overflow: hidden;}
+.container .banner ul{height:867px;}
+.container .banner>ul>li{width:100%;height:inherit}
+.container .banner>ul>li>img{width:100%;}
+
+.inner_img{
+	position: absolute;
+	width:100%;
+	height: 867px;
+	background: url(../img/home/banner_02.png);
+	background-repeat: no-repeat;
+	background-position-x: center;
+	background-position-y: center;
+	background-size: 1400px 598px;
+}
+
+.inner_img .inner_cont{position: relative;top: 34%;left: 20%;display: inline-block;}
+.inner_img .inner_cont img{float: left;}
+.inner_img .inner_cont div{display: inline-block;margin-left: 82px;width: 400px;}
+.inner_img .inner_cont div>h1{font-size: 25px;color: white;font-family: "微软雅黑";margin-bottom: 6px;}
+.inner_img .inner_cont div>i{border: 1px solid #FFFFFF;display: inline-block;width: 100%;}
+.inner_img .inner_cont div>p{color: #E9E9E9;font-size: 16px;line-height: 32px;font-family: "微软雅黑";margin-top: 8px;}
+.inner_img .inner_cont div>button{width: 180px;height: 50px;background: #F5AF29;border-radius: 12px;font-size: 24px;
+		font-family: "微软雅黑";color: white;font-weight: 100;letter-spacing: 5px;border: none;margin-top: 30px;cursor: pointer;
+}
+
+/*********头部
+ * ************************/
+.top{width: 100%;}
+.top .bittle{width: 1200px;margin: 0 auto;height: 80px;}
+.top .bittle img{margin-top: 14px;}
+.top .bittle ul{float: right;margin-top: 44px;}
+.top .bittle ul>li{float: left;margin-right: 44px;}
+.top .bittle ul>li>a{text-decoration: none;color: #373737;}
+
+/*鼠标移动*/
+.top .bittle ul>li:hover{cursor: pointer;}

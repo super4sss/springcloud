@@ -1,0 +1,30 @@
+<html lang="zh-CN">
+<head>
+<title>500 服务器错误</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+</head>
+<script language="JavaScript">
+<!--
+	function dokeydown() {
+		var obj = document.getElementById("divexception");
+		if ("none" == obj.style.display.toLowerCase()) {
+			obj.style.display = "block";
+		} else {
+			obj.style.display = "none";
+		}
+		return false;
+	}
+//-->
+</script>
+</head>
+<body>
+	<div style="margin:0 auto;width:500px;">
+		<div style="background-color:#f0f0f0;" onclick="dokeydown()">服务器错误</div>
+		<div>系统发生错误,请返回重试或查看其他内容!<br /><br /><a href="#(ctx)/">返回首页</a></div>
+		<div style="display: none;" id=divexception>
+			<textarea rows="40" style="width:100%">#(error)</textarea>
+		<div>
+	</div>
+</body>
+</html>

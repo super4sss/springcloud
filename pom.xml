@@ -13,6 +13,7 @@
     <module>cloud-consumer-order80</module>
     <module>cloud-api-common</module>
     <module>cloud-provider-payment8003</module>
+    <module>cloud-provider-overview</module>
   </modules>
 
   <packaging>pom</packaging>
@@ -76,10 +77,16 @@
 <!--        <artifactId>jfinal</artifactId>-->
 <!--        <version>3.4</version>-->
 <!--      </dependency>-->
+<!--      <dependency>-->
+<!--        <groupId>com.jfinal</groupId>-->
+<!--        <artifactId>jfinal</artifactId>-->
+<!--        <version>4.8</version>-->
+<!--      </dependency>-->
+
       <dependency>
-        <groupId>com.jfinal</groupId>
-        <artifactId>jfinal</artifactId>
-        <version>4.8</version>
+        <groupId>com.gitee.sohnny</groupId>
+        <artifactId>sojpt-boot-spring-boot-starter</artifactId>
+        <version>2.5.8-4.8</version>
       </dependency>
 
       <dependency>

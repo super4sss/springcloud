@@ -1,0 +1,238 @@
+#@adminLayout()
+
+#define main()
+<div class="jfa-header-box" id="jfa-header-box">
+	<div class="jfa-crumbs" id="jfa-crumbs">
+		首页
+	</div>
+	#include("../common/_admin_header_right.html")
+</div>
+
+### 内容区域
+<div class="jfa-content-box" id="jfa-content-box">
+	<div class="page-content">
+	
+		<div class="row">
+			 <div class="col-md-6 column">
+				<div class="widget-box transparent">
+					<div class="widget-header widget-header-flat">
+						<h4 class="widget-title lighter">系统信息</h4>
+					</div>
+					<div class="widget-body">
+						<div class="widget-main no-padding">
+							<table class="table table-bordered table-striped">
+								<thead class="thin-border-bottom">
+									<tr>
+										<th>名称</th>
+										<th>描述</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>操作系统</td>
+										<td><b class="blue">#(sysInfo["os.name"]??)(#(sysInfo['os.arch']??))</b></td>
+									</tr>
+									<tr>
+										<td>操作系统版本</td>
+										<td><b class="blue">#(sysInfo["os.version"]??)</b></td>
+									</tr>
+									<tr>
+										<td>JRE名称</td>
+										<td><b class="blue">#(sysInfo["java.runtime.name"]??)</b></td>
+									</tr>
+									<tr>
+										<td>JRE版本</td>
+										<td><b class="blue">#(sysInfo["java.runtime.version"]??)(#(sysInfo['java.vm.info']??))</b></td>
+									</tr>
+									<tr>
+										<td>JVM名称</td>
+										<td><b class="blue">#(sysInfo["java.vm.name"]??)</b></td>
+									</tr>
+									<tr>
+										<td>JVM版本</td>
+										<td><b class="blue">#(sysInfo["java.vm.version"]??)</b></td>
+									</tr>
+								</tbody>
+							</table>
+						</div><!-- /.widget-main -->
+					</div><!-- /.widget-body -->
+				</div><!-- /.widget-box -->
+			</div><!-- /.col -->
+			
+			<div class="col-md-6 column">
+				<div class="widget-box transparent" id="recent-box">
+					<div class="widget-header">
+						<h4 class="widget-title lighter">系统资源</h4>
+                     	<div class="widget-toolbar no-border">
+                        	<ul class="nav nav-tabs" style="list-style:none" id="recent-tab">
+                            	<li class="active" style="float:left;">
+                                	<a data-toggle="tab" href="#jvm" aria-expanded="true">内存</a>
+                             	</li>
+                             	<li class="" style="float:left;">
+                                	<a data-toggle="tab" href="#thread" aria-expanded="false">线程</a>
+                             	</li>
+                         	</ul>
+                     	</div>
+                 	</div>
+                 	<div class="widget-body">
+                    	<div class="widget-main padding-4">
+                        	<div class="tab-content padding-8">
+                            	<div id="jvm" class="tab-pane active">
+                                	<div id="dashChart" style="width: 500px;height:300px;padding-top: 20px;"></div>
+                             	</div>
+                             	<div id="thread" class="tab-pane" style="margin-top: 20px">
+                                	<div class="widget-body">
+                                    	<div class="widget-main no-padding">
+                                        	<table class="table table-bordered table-striped">
+                                            	<tbody id="threadInfo" >
+													
+                                             	</tbody>
+                                         	</table>
+                                     	</div><!-- /.widget-main -->
+                                 	</div><!-- /.widget-body -->
+                             	</div><!-- /.#member-tab -->
+                         	</div>
+                     	</div><!-- /.widget-main -->
+                 	</div>
+				</div>
+			</div>
+			
+		</div>
+		
+	</div><!-- END OF bootstrap container -->
+</div><!-- END OF jfa-content-box -->
+<link href="#(ctx)/assets/ace/ace.min.css" rel="stylesheet"/>
+<script src="#(ctx)/assets/ace/ace.min.js"></script>
+<script src="#(ctx)/assets/ace/ace-elements.min.js"></script>
+<script src="#(ctx)/assets/echarts/echarts-all.js"></script>
+<style type="text/css">
+.jfa-content-box {
+	padding: 20px 10px 20px 10px;
+}
+.jfa-content {
+	height: 160px;
+	padding: 30px 0 0 30px;
+
+	font-size: 16px;
+	font-weight: 400;
+}
+</style>
+<script type="text/javascript">
+$(function () {
+	loadHeapMemoryUsage();
+});
+$('#recent-box li').click(function (e) {
+    var num = $(this).index();
+    e.preventDefault();//阻止a链接的跳转行为
+    if (num == 0) {
+    	loadHeapMemoryUsage();
+        $("#jvm").tab('show');//显示当前选中的链接及关联的content
+    }
+    else if (num = 1) {
+        loadThreadInfo();
+        $("#thread").tab('show');//显示当前选中的链接及关联的content
+    }
+});
+function loadHeapMemoryUsage() {
+    $.ajax({
+        type: 'GET',
+        url: "#(ctx)/jolokia/read/java.lang:type=Memory/HeapMemoryUsage",
+        contentType: 'application/json;charset=utf-8',
+        success: function (data) {
+            var dashChart = echarts.init(document.getElementById('dashChart'));
+            data = $.parseJSON(data);
+            var val = data.value;
+            if (data.status == "200") {
+                var option = {
+                    title: {
+                        text: 'JVM内存使用情况',
+                        x: 'center'
+                    },
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    toolbox: {
+                        show: false,
+                        feature: {
+                            mark: {show: true},
+                            dataView: {show: true, readOnly: false},
+                            magicType: {
+                                show: true,
+                                type: ['pie', 'funnel'],
+                                option: {
+                                    funnel: {
+                                        x: '25%',
+                                        width: '50%',
+                                        funnelAlign: 'left',
+                                        max: 1548
+                                    }
+                                }
+                            },
+                            restore: {show: true},
+                            saveAsImage: {show: true}
+                        }
+                    },
+                    calculable: true,
+                    series: [
+                        {
+                            name: '数量',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: [
+                                {value: (val.used) / (1024 * 1024), name: '已使用'},
+                                {value: (val.max - val.used) / (1024 * 1024), name: '未使用'},
+
+                            ],
+                            itemStyle: {
+                                normal: {
+                                    label: {
+                                        show: true,
+                                        formatter: '{b}({d}%)'
+                                    },
+                                    labelLine: {show: true}
+                                }
+                            }
+                        }
+                    ]
+                };
+                dashChart.setOption(option, false);
+            }
+        }
+    });
+}
+function loadThreadInfo() {
+    $("#threadInfo").empty();
+    $.ajax({
+        type: 'GET',
+        url: "#(ctx)/jolokia/read/java.lang:type=Threading",
+        contentType: 'application/json;charset=utf-8',
+        success: function (data) {
+            data = $.parseJSON(data);
+            if (data.status == "200") {
+                var val = data.value;
+                thradInfoRow("Current thread cpu time", val.CurrentThreadCpuTime);
+                thradInfoRow("Current thread user time", val.CurrentThreadUserTime);
+                thradInfoRow("Daemon thread count", val.DaemonThreadCount);
+                thradInfoRow("Peak thread count", val.PeakThreadCount);
+                thradInfoRow("Thread count", val.ThreadCount);
+                thradInfoRow("Total started thread count", val.TotalStartedThreadCount);
+            } else {
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+                thradInfoRow("系统繁忙", "请稍后");
+            }
+        }
+    });
+}
+function thradInfoRow(name, value) {
+    var html = '<tr><td>' + name + '</td><td><b class="blue">' + value + '</b></td></tr>';
+    $("#threadInfo").append(html);
+}
+</script>
+#end

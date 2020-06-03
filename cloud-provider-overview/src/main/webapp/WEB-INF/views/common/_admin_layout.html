@@ -1,0 +1,76 @@
+#--
+	如果是 pjax 请求则只调用 main 函数
+	否则调用 doAdminLayout 函数
+--#
+#define adminLayout()
+	#if(isPjax)
+		#@main()
+	#else
+		#@doAdminLayout()
+	#end
+#end
+
+#define doAdminLayout()
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>项目概况管理后台</title>
+
+	<!-- Bootstrap -->
+	<link href="#(ctx)/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="#(ctx)/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="#(ctx)/assets/nprogress/nprogress.css" rel="stylesheet">
+	<link href="#(ctx)/assets/switchery/switchery.min.css" rel="stylesheet">
+
+	<!-- Page css -->
+	<link href="#(ctx)/assets/css/web-admin.css" rel="stylesheet">
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="#(ctx)/assets/jquery/jquery.min-v1.12.4.js"></script>
+	<script src="#(ctx)/assets/jquery_form/jquery.form.min.js"></script>
+	<script src="#(ctx)/assets/jquery_pjax/jquery.pjax.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="#(ctx)/assets/bootstrap/js/bootstrap.min.js"></script>
+	<script src="#(ctx)/assets/nprogress/nprogress.js"></script>
+	<script src="#(ctx)/assets/layer/layer/layer.js"></script>
+	<script src="#(ctx)/assets/switchery/switchery.min.js"></script>
+
+	<!-- Page js -->
+	<script src="#(ctx)/assets/js/web-admin-common.js"></script>
+	<script src="#(ctx)/assets/js/web-admin.js"></script>
+
+	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="#(ctx)/assets/bootstrap/js/html5shiv.min.js"></script>
+	<script src="#(ctx)/assets/bootstrap/js/respond.min.js"></script>
+	<![endif]-->
+	
+	<script type="text/javascript">
+		var ctx = '#(ctx)';
+	</script>
+</head>
+<body>
+
+<div class="jfa-page-box">
+	### 左侧区域容器
+	<div class="jfa-left-box">
+		<div class="jfa-logo">
+			项目概况
+		</div>
+		<div class="jfa-menu-box">
+			#include("_admin_menu.html")
+		</div>
+	</div>
+
+	### 右侧区域容器
+	<div class="jfa-right-box" id="pjax-container">
+		#@main()
+	</div>
+</div>
+</body>
+</html>
+#end

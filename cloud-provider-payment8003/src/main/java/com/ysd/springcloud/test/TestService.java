@@ -18,7 +18,9 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class TestService {
 
-//  public List<Record> getVrShows(String project) {
+
+
+  //  public List<Record> getVrShows(String project) {
 //    String sql = "select name,viewPath from pro_vrshow where project=? order by id desc";
 //    List<Record> list = Db.find(sql, project);
 //    return  list;
@@ -38,5 +40,7 @@ public List<Record> getVrShows(String project, String keyword) {
 }
 
 
-
+  public String gettest() {
+  return "success";
+  }
 }

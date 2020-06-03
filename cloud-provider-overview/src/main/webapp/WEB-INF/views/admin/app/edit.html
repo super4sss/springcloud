@@ -1,0 +1,55 @@
+#@adminLayout()
+
+#define main()
+<div class="jfa-header-box" id="jfa-header-box">
+	<div class="jfa-crumbs" id="jfa-crumbs">
+		<a href="#(ctx)/admin/app">应用授权</a> / 修改
+	</div>
+	<div class="jfa-search-box"></div>
+	#include("../../common/_admin_header_right.html")
+</div>
+
+### 内容区域
+<div class="jfa-content-box" id="jfa-content-box">
+	<div class="jfa-content" id="jfa-content">
+		#include("_form.html", action=ctx+"/admin/app/update")
+	</div><!-- END OF jfa-content -->
+</div><!-- END OF jfa-content-box -->
+
+<style type="text/css">
+	#appForm {
+		width: 500px;
+	}
+
+	.form-group {
+		margin-bottom: 25px;
+	}
+
+	.jfa-content label {
+		line-height: 1;
+		vertical-align: baseline;
+		color: #23527c;
+		font-size: 20px;
+		font-weight: normal;
+		margin-bottom: 8px;;
+	}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#appForm").ajaxForm({
+			dataType: "json"
+			, beforeSubmit: function(formData, jqForm, options) {}
+			, success: function(ret) {
+				if (ret.state == "ok") {
+					location.href = "#(ctx)/admin/app";
+				} else {
+					showFailMsg(ret.msg);
+				}
+			}
+			, error: function(ret) {alert(ret.statusText);}
+			, complete: function(ret) {} 	      // 无论是 success 还是 error，最终都会被回调
+		});
+	});
+</script>
+#end

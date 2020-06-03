@@ -1,0 +1,1 @@
+apidoc -i ../src/main/java/com/ysd/overview/api -o ../src/main/webapp/restapi

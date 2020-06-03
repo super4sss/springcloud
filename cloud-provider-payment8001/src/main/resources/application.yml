@@ -6,10 +6,24 @@ spring:
     nacos:
       discovery:
         server-addr: localhost:8848
-#  datasource:
-#    url: jdbc:mysql://localhost:3306/db2019?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
-#    username: root
-#    password: root
+datasource:
+  driver-class-name: com.mysql.jdbc.Driver
+  #    url: jdbc:mysql://localhost:3306/mysql?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+  url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+  username: root
+  password: root
+#  redis:
+#    host: localhost
+#    port: 6379
+#    password:
+#    database: 1
+jfinal:
+  dialect: com.jfinal.plugin.activerecord.dialect.MysqlDialect
+  kit-classes:
+    - model._MappingKit
+  sql-templates:
+    - classpath:template/*.sql
+  show-sql: true
 
 #logging:
 #  level:

@@ -3,16 +3,18 @@ package com.ysd.springcloud.kit;
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
+import org.springframework.stereotype.Component;
 
 /**
  * @author daixin
  * @create 2020/5/12 17:34
  */
+@Component
 public class NetKit {
 
   public static Session session;
   public static Channel channel;
-  public static void SSh() throws Exception {
+  public  void SSh() throws Exception {
     try {
       String Sshuser = "mojianghui";
       String SShPassword = "ysd2018";
@@ -40,7 +42,7 @@ public class NetKit {
     }
   }
 
-  public static void close() {
+  public void closeSSH() {
     if (session != null && session.isConnected() ) {
       session.disconnect();
     }

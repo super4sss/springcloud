@@ -1,0 +1,1 @@
+apidoc -i ../src/main/java/com/ysd/overview/front -o ../src/main/webapp/webapi

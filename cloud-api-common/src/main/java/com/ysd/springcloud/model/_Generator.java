@@ -72,6 +72,6 @@ public class _Generator {
 		// 生成
 		gen.generate();
 
-		kit.close();
+//		kit.close();
 	}
 }

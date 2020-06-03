@@ -6,15 +6,17 @@ spring:
       discovery:
         server-addr: localhost:8848
   datasource:
-    url: jdbc:mysql://192.168.78.247/ysd_overview?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    username: bim
-    password: bim@prod1&2019$
+    driver-class-name: com.mysql.jdbc.Driver
+    #    url: jdbc:mysql://localhost:3306/mysql?characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC&characterEncoding=utf8&useSSL=false&zeroDateTimeBehavior=convertToNull&tinyInt1isBit=false
+    username: root
+    password: root
 
 #arp.jdbc-url : jdbc:mysql://172.18.148.80:10010/ysd_overview?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
 arp.jdbc-url : jdbc:mysql://localhost:9253/ysd_overview?serverTimezone=UTC&useSSL=false&autoReconnect=true&tinyInt1isBit=false&useUnicode=true&characterEncoding=utf8
 arp.username : root
 arp.password : prod1&2019$
-arp.is-dev-mode: true
+#arp.is-dev-mode: true
 #logging:
 #  level:
 #    ROOT: INFO
@@ -24,6 +26,8 @@ arp.is-dev-mode: true
 
 server:
   port: 8002
+#  servlet:
+#    context-path: /jfinal
 #  address: localhost
 #  compression:
 #    enabled: true
