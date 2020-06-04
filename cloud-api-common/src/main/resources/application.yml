@@ -26,8 +26,8 @@ arp.password : prod1&2019$
 
 server:
   port: 8002
-#  servlet:
-#    context-path: /jfinal
+  servlet:
+    context-path: /ysdcloud
 #  address: localhost
 #  compression:
 #    enabled: true

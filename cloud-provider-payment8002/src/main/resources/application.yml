@@ -1,5 +1,5 @@
 server:
-  port: 8002
+  port: 9522
 #  servlet:
 #    context-path: /jfinal
 spring:

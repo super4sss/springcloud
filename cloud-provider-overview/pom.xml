@@ -19,11 +19,12 @@
 	</properties>
 	
 	<dependencies>
-<!--		<dependency>-->
-<!--			<groupId>com.jfinal</groupId>-->
-<!--			<artifactId>jfinal</artifactId>-->
-<!--			<version>3.4</version>-->
-<!--		</dependency>-->
+<!--    该项目只用jfinal-->
+		<dependency>
+			<groupId>com.jfinal</groupId>
+			<artifactId>jfinal</artifactId>
+			<version>4.8</version>
+		</dependency>
 <!--		<dependency>-->
 <!--			<groupId>com.jfinal</groupId>-->
 <!--			<artifactId>cos</artifactId>-->
@@ -43,7 +44,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.44</version>
+<!--			<version>5.1.44</version>-->
 		</dependency>
 <!--		<dependency>-->
 <!--			<groupId>log4j</groupId>-->
@@ -117,6 +118,71 @@
       <artifactId>cloud-api-common</artifactId>
       <version>${project.version}</version>
     </dependency>
+
+<!--springboot-->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>5.2.2.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot</artifactId>
+      <version>2.2.2.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+      <version>2.2.2.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-commons</artifactId>
+      <version>2.2.1.RELEASE</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.cloud</groupId>
+      <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+      <version>2.2.1.RELEASE</version>
+    </dependency>
+
+    <!--热部署-->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-devtools</artifactId>
+      <scope>runtime</scope>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.alibaba.cloud</groupId>
+      <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.1.16</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>5.2.2.RELEASE</version>
+    </dependency>
 	</dependencies>
 	
 	<!-- 使用aliyun maven -->
@@ -145,38 +211,64 @@
 					<compilerArgument>-parameters</compilerArgument>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<configuration>
-					<webResources>
-			            <resource>
-							<!--suppress UnresolvedMavenProperty -->
-                    <directory>deploy/${deploy.env}</directory>
-							<targetPath>WEB-INF/classes</targetPath>
-			            </resource>
-			          </webResources>
-				</configuration>
-			</plugin>
 <!--			<plugin>-->
-<!--				<groupId>org.mortbay.jetty</groupId>-->
-<!--				<artifactId>jetty-maven-plugin</artifactId>-->
-<!--				<version>8.1.8.v20121106</version>-->
+<!--				<groupId>org.apache.maven.plugins</groupId>-->
+<!--				<artifactId>maven-war-plugin</artifactId>-->
 <!--				<configuration>-->
-<!--					<stopKey>stop</stopKey>-->
-<!--					<stopPort>5599</stopPort>-->
-<!--					<webAppConfig>-->
-<!--						<contextPath>/${project.build.finalName}</contextPath>-->
-<!--					</webAppConfig>-->
-<!--					<scanIntervalSeconds>5</scanIntervalSeconds>-->
-<!--					<connectors>-->
-<!--						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">-->
-<!--							<port>8080</port>-->
-<!--							<maxIdleTime>60000</maxIdleTime>-->
-<!--						</connector>-->
-<!--					</connectors>-->
+<!--					<webResources>-->
+<!--			            <resource>-->
+<!--							&lt;!&ndash;suppress UnresolvedMavenProperty &ndash;&gt;-->
+<!--                    <directory>deploy/${deploy.env}</directory>-->
+<!--							<targetPath>WEB-INF/classes</targetPath>-->
+<!--			            </resource>-->
+<!--			          </webResources>-->
 <!--				</configuration>-->
-<!--      		</plugin>-->
+<!--			</plugin>-->
+
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>2.0.4.RELEASE</version>
+        <configuration>
+          <includeSystemScope>true</includeSystemScope>
+          <!-- 指定该Main Class为全局的唯一入口 -->
+          <mainClass>com.ysd.springcloud.OverviewProvider8005</mainClass>
+<!--          <executable>true</executable>-->
+          <layout>ZIP</layout>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+        <!--使用默认的变量分割符即${}-->
+        <configuration>
+          <useDefaultDelimiters>true</useDefaultDelimiters>
+        </configuration>
+      </plugin>
+
 		</plugins>
+
+    <resources>
+      <resource>
+        <!--打包该目录下的 application.yml -->
+<!--        <directory>test</directory>-->
+        <directory>deploy/prd</directory>
+        <includes>
+          <include>**/*.yml</include>
+          <include>**/*.properties</include>
+        </includes>
+        <!-- 启用过滤 即该资源中的变量将会被过滤器中的值替换 -->
+        <filtering>false</filtering>
+      </resource>
+    </resources>
 	</build>
 </project>

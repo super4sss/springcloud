@@ -11,7 +11,7 @@
 		<filter-class>com.jfinal.core.JFinalFilter</filter-class>
 		<init-param>
 			<param-name>configClass</param-name>
-			<param-value>com.ysd.overview.AppConfig</param-value>
+			<param-value>com.ysd.springcloud.AppConfig</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

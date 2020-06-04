@@ -76,6 +76,7 @@ public class TestService {
   String time = String.valueOf((int)System.currentTimeMillis());
     //设置路径
 //  String filepath = "G:\\xml解析文件\\uploadFile\\"+time+".docx";
+//  String filepath = "D:\\ysdcloud\\xml解析文件\\temp.docx";
   String filepath = "G:\\xml解析文件\\temp.docx";
 //    new Filepath().set("filePath", filepath).set("fileName", templateFile.getFileName()).save();
   File file =new File(filepath);

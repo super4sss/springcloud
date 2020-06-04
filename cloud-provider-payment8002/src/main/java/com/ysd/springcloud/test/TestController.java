@@ -37,21 +37,18 @@ public class TestController extends Controller {
   }
 @PostMapping(value="/exportByTemplate")
   public void exportByTemplate(){
-//    UploadFile templateFile = getFile("templateFile");
-    UploadFile templateFile = getFile();
+  UploadFile templateFile = this.getFile();
   System.out.println(templateFile.getFileName());
-    System.out.println("path:"+templateFile.getUploadPath());
-    System.out.println(1111111);
-    String s = getPara("map");
-  System.out.println("s:"+s);
-  HashMap<String, Object> map=JSON.parseObject(s, HashMap.class);
+  System.out.println("path:" + templateFile.getUploadPath());
+  System.out.println(1111111);
+  String s = this.getPara("map");
+  System.out.println("s:" + s);
+  HashMap<String, Object> map = (HashMap)JSON.parseObject(s, HashMap.class);
   System.out.println(map.toString());
-
-  Ret ret = sr.exportByTemplate(templateFile,map);
-//    renderFile(PropKit.get("system.picPath") + File.separator + "temp.docx");
-//    renderFile( "G:\\\\xml解析文件\\\\\"+\"temp.docx");
-    renderFile("G:\\xml解析文件\\temp.docx");
-    renderJson(ret);
+  Ret ret = this.sr.exportByTemplate(templateFile, map);
+//  this.renderFile("D:\\ysdcloud\\xml解析文件\\temp.docx");
+  this.renderFile("G:\\xml解析文件\\temp.docx");
+  this.renderJson(ret);
 
   }
 
