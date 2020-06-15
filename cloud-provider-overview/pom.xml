@@ -249,10 +249,31 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
         <version>3.1.0</version>
-        <!--使用默认的变量分割符即${}-->
-        <configuration>
-          <useDefaultDelimiters>true</useDefaultDelimiters>
-        </configuration>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <!-- 覆盖原有文件 -->
+              <overwrite>true</overwrite>
+              <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+              <!-- 待处理的资源定义 -->
+              <resources>
+                <resource>
+                  <!-- 指定resources插件处理哪个目录下的资源文件 -->
+<!--                  <directory>deploy/${package.environment}</directory>-->
+<!--                  <directory>deploy/dev</directory>-->
+                  <directory>deploy/prd</directory>
+                  <filtering>false</filtering>
+                </resource>
+              </resources>
+            </configuration>
+<!--            <inherited></inherited>-->
+          </execution>
+        </executions>
       </plugin>
 
 		</plugins>
@@ -260,15 +281,48 @@
     <resources>
       <resource>
         <!--打包该目录下的 application.yml -->
-<!--        <directory>test</directory>-->
-        <directory>deploy/prd</directory>
+        <directory>src/main/resources</directory>
         <includes>
-          <include>**/*.yml</include>
-          <include>**/*.properties</include>
+          <include>*.yml</include>
+          <include>*.properties</include>
         </includes>
         <!-- 启用过滤 即该资源中的变量将会被过滤器中的值替换 -->
-        <filtering>false</filtering>
+        <filtering>true</filtering>
       </resource>
     </resources>
+
+    <!-- 定义 filter,即该资源中的值将会用来替换同名属性（设置 filtering 为 true 的资源中的属性）-->
+<!--    <filters>-->
+<!--      <filter>-->
+<!--&lt;!&ndash;        deploy/${profiles.active}/*.yml&ndash;&gt;-->
+<!--        deploy/${profiles.active}/config.properties-->
+<!--      </filter>-->
+<!--    </filters>-->
 	</build>
+  <profiles>
+    <profile>
+      <id>dev</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <package.environment>dev</package.environment>
+      </properties>
+    </profile>
+    <profile>
+      <id>test</id>
+      <properties>
+        <package.environment>test</package.environment>
+      </properties>
+    </profile>
+    <profile>
+      <id>prd</id>
+      <properties>
+        <package.environment>prd</package.environment>
+      </properties>
+    </profile>
+  </profiles>
+
+
+
 </project>

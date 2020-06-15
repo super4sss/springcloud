@@ -11,6 +11,7 @@ import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
 import com.jfinal.config.Plugins;
 import com.jfinal.core.JFinal;
+import com.jfinal.kit.PropKit;
 import com.jfinal.template.Engine;
 import com.sojpt.boot.ActiveRecordPluginProperties;
 import com.sojpt.boot.SoJptConfig;
@@ -28,7 +29,8 @@ public class SoJptBootConfig extends SoJptConfig {
    */
   @Override
   public void configConstant(Constants me) {
-
+//读取配置文件
+    PropKit.use("config.properties");
     // 设置当前是否为开发模式
     me.setDevMode(arpProperties.getIsDevMode());
     // me.setError404View("/index.html");

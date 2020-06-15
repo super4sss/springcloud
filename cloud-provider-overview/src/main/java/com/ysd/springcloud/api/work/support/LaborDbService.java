@@ -1,17 +1,5 @@
 package com.ysd.springcloud.api.work.support;
 
-import static java.util.stream.Collectors.toMap;
-
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-import org.apache.commons.lang3.time.DateUtils;
-import org.apache.http.client.fluent.Request;
-
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
@@ -22,6 +10,17 @@ import com.jfinal.log.Log;
 import com.jfinal.plugin.activerecord.Db;
 import com.jfinal.plugin.activerecord.Record;
 import com.ysd.springcloud.common.kit.ObjKit;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
+import org.apache.http.client.fluent.Request;
+
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toMap;
 
 /**
  * 导入劳务数据服务
@@ -169,7 +168,9 @@ public  class LaborDbService implements LaborInterface {
 		for (String key : params.keySet()) {
 			url.append("&").append(key).append("=").append(params.get(key));
 		}
-		
+
+    System.out.println(url);
+
 		if (log.isDebugEnabled()) {
 			log.debug("Request to " + url.toString());
 		}

@@ -1,14 +1,8 @@
 package com.ysd.springcloud.api.problem;
 
-import static java.util.stream.Collectors.toMap;
-
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
-
+import cn.afterturn.easypoi.excel.ExcelImportUtil;
+import cn.afterturn.easypoi.excel.entity.ImportParams;
+import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableList.Builder;
 import com.jfinal.kit.Ret;
@@ -21,10 +15,14 @@ import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.model.Problem;
 import com.ysd.springcloud.common.page.Paginator;
 import com.ysd.springcloud.common.page.QueryHelper;
+import org.apache.commons.lang3.time.DateFormatUtils;
 
-import cn.afterturn.easypoi.excel.ExcelImportUtil;
-import cn.afterturn.easypoi.excel.entity.ImportParams;
-import cn.afterturn.easypoi.excel.entity.result.ExcelImportResult;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toMap;
 
 
 /**
@@ -49,7 +47,8 @@ public class ProblemApiService {
 			Date end = ObjKit.getLastDayOfMonth(start);
 			query.where("beginTime between ? and ?").param(start).param(end);
 		}
-		query.order("id desc");
+//		query.order("id desc");
+    query.order("beginTime desc");
 		return Db.paginate(page.getPageNo(), page.getPageSize(), 
 				"select *", query.getSql(), query.getParas());
 	}

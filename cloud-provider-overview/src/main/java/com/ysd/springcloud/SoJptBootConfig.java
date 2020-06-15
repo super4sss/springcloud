@@ -20,9 +20,9 @@ import com.sojpt.boot.ActiveRecordPluginProperties;
 import com.sojpt.boot.SoJptConfig;
 import com.ysd.springcloud.admin.common.AdminRoutes;
 import com.ysd.springcloud.api.common.ApiRoutes;
+import com.ysd.springcloud.common.model._MappingKit;
 import com.ysd.springcloud.front.common.FrontRoutes;
 import com.ysd.springcloud.kit.NetKit;
-import com.ysd.springcloud.common.model._MappingKit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -41,6 +41,8 @@ public class SoJptBootConfig extends SoJptConfig {
   public void configConstant(Constants me) {
 //读取配置文件
     PropKit.use("config.properties");
+//    File file = new File("cloud-provider-overview\\src\\main\\resources\\config.properties");
+//    PropKit.use(file);
     //设置当前是否为开发模式
     me.setDevMode(isDevMode());
     //设置JSON
@@ -61,7 +63,7 @@ public class SoJptBootConfig extends SoJptConfig {
    */
   @Override
   public void configPlugin(Plugins me) {
-    System.out.println(PropKit.getBoolean("app.devMode"));
+    System.out.println(PropKit.get("type")+PropKit.getBoolean("app.devMode"));
     if(PropKit.getBoolean("app.devMode")) {
       try {
         NetKit netKit = new NetKit();

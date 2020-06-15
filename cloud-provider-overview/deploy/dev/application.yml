@@ -27,7 +27,9 @@ arp.is-dev-mode: true
 
 server:
 #  port: 8002
-  port: 8006
+  port: 9523
+  servlet:
+    context-path: /ysdcloud
 #  address: localhost
 #  compression:
 #    enabled: true

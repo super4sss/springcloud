@@ -1,20 +1,5 @@
 package com.ysd.springcloud.api.work.support;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.http.client.fluent.Request;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.kit.JsonKit;
@@ -27,6 +12,12 @@ import com.jfinal.plugin.activerecord.Record;
 import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.model.CheckInCount;
 import com.ysd.springcloud.common.model.SurveVdo;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.http.client.fluent.Request;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * 风投劳务服务
@@ -227,6 +218,7 @@ public class LaborVenService implements LaborInterface{
 		StringBuilder url = new StringBuilder();
 		url.append(getProjectPath(project)).append("/").append(method);
 		url.append("?projectId=").append(projectNum);
+    System.out.println(url);
 		for (String key : params.keySet()) {
 			url.append("&").append(key).append("=").append(params.get(key));
 		}

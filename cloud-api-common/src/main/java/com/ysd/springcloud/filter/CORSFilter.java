@@ -57,6 +57,7 @@ public class CORSFilter implements Filter {
     response.addHeader("Access-Control-Allow-Origin", "*");
     response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS,DELETE");
     response.addHeader("Access-Control-Allow-Headers", "Auth-Token-Overview");
+    response.addHeader("Access-Control-Allow-Headers", "appid");
     String method = request.getMethod();
     System.out.println(method);
     System.out.println(request.getRequestURI());

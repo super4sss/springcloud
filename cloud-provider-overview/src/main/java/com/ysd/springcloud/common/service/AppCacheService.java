@@ -27,7 +27,8 @@ public class AppCacheService extends CacheService {
 			}
 		};
 	}
-	
+
+  private App app;
 	private Object createValue(String key) {
 
     System.out.println(key);
@@ -38,7 +39,9 @@ public class AppCacheService extends CacheService {
 		if (ObjKit.empty(token)) {
 			return null;
 		}
-		App app = appDao.findById(token.getAppId());
+
+      app = appDao.findById(token.getAppId());
+
 		if (ObjKit.empty(app)) {
 			return null;
 		}

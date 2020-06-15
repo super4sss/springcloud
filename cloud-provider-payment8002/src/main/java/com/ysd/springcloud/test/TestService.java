@@ -1,5 +1,6 @@
 package com.ysd.springcloud.test;
 
+import com.jfinal.kit.PropKit;
 import com.jfinal.kit.Ret;
 import com.jfinal.upload.UploadFile;
 import com.ysd.springcloud.kit.ObjKit;
@@ -77,7 +78,8 @@ public class TestService {
     //设置路径
 //  String filepath = "G:\\xml解析文件\\uploadFile\\"+time+".docx";
 //  String filepath = "D:\\ysdcloud\\xml解析文件\\temp.docx";
-  String filepath = "G:\\xml解析文件\\temp.docx";
+//  String filepath = "G:\\xml解析文件\\temp.docx";
+    String filepath = PropKit.get("tempPath");
 //    new Filepath().set("filePath", filepath).set("fileName", templateFile.getFileName()).save();
   File file =new File(filepath);
     try {
