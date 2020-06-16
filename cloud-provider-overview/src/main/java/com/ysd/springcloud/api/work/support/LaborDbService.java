@@ -169,7 +169,6 @@ public  class LaborDbService implements LaborInterface {
 			url.append("&").append(key).append("=").append(params.get(key));
 		}
 
-    System.out.println(url);
 
 		if (log.isDebugEnabled()) {
 			log.debug("Request to " + url.toString());
@@ -177,7 +176,7 @@ public  class LaborDbService implements LaborInterface {
 		
 		String response = null;
 		try {
-			response = Request.Get(url.toString())
+			response = Request.Get(url.toString().trim())
 					.execute().returnContent().asString();
 		} catch (Exception e) {
 			log.error("劳务请求异常", e);

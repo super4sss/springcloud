@@ -266,7 +266,7 @@
                   <!-- 指定resources插件处理哪个目录下的资源文件 -->
 <!--                  <directory>deploy/${package.environment}</directory>-->
 <!--                  <directory>deploy/dev</directory>-->
-                  <directory>deploy/prd</directory>
+<!--                  <directory>deploy/prd</directory>-->
                   <filtering>false</filtering>
                 </resource>
               </resources>

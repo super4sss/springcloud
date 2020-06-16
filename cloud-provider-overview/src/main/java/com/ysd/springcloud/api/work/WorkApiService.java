@@ -1,15 +1,5 @@
 package com.ysd.springcloud.api.work;
 
-import java.time.LocalTime;
-import java.util.Date;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.commons.lang3.time.DateFormatUtils;
-
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Sets;
@@ -19,10 +9,21 @@ import com.ysd.springcloud.api.work.support.LaborService;
 import com.ysd.springcloud.common.dto.CameraDTO;
 import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.service.PropCacheService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
+
+import java.time.LocalTime;
+import java.util.Date;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
 
 /**
  * 施工数据服务
  */
+@Slf4j
 public class WorkApiService {
 
 	public static final WorkApiService me = new WorkApiService();

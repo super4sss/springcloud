@@ -1,9 +1,9 @@
 package com.ysd.springcloud.api.work.support;
 
-import java.util.Map;
-
 import com.jfinal.kit.Ret;
 import com.ysd.springcloud.common.service.PropCacheService;
+
+import java.util.Map;
 
 /**
  * 劳务接口
@@ -87,7 +87,8 @@ public interface LaborInterface {
 	public static final String TYPE_VE = "venture";
 	/*横琴*/
 	public static final String TYPE_HQ = "hengqin";
-	
+	public static final String TYPE_RS = "respire";
+
 	/**
 	 * 获取监控视频
 	 * @param project

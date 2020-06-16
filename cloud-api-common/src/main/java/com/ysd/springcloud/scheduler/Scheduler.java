@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  * @author daixin
@@ -21,9 +20,9 @@ public class Scheduler{
 @Autowired
   NetKit netKit;
   //每隔2秒执行一次
-  @Scheduled(fixedRate = 60000)
+  @Scheduled(fixedRate = 30000)
   public void testTasks() {
-    System.out.println(PropKit.getBoolean("app.devMode"));
+//    System.out.println(PropKit.getBoolean("app.devMode"));
     if (PropKit.getBoolean("app.devMode")) {
       try {
         netKit.closeSSH();
@@ -31,7 +30,7 @@ public class Scheduler{
       } catch (Exception e) {
         e.printStackTrace();
       }
-      System.out.println("ssh连接：" + dateFormat.format(new Date()));
+//      System.out.println("ssh连接：" + dateFormat.format(new Date()));
     }
   }
 }

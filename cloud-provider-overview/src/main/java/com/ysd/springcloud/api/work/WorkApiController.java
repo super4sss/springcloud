@@ -3,13 +3,16 @@ package com.ysd.springcloud.api.work;
 import com.jfinal.kit.Ret;
 import com.jfinal.kit.StrKit;
 import com.ysd.springcloud.api.work.support.LaborService;
+import com.ysd.springcloud.api.work.support.LaborVenService;
 import com.ysd.springcloud.common.controller.BaseController;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
 /**
  * 施工数据接口
  */
+@Slf4j
 public class WorkApiController extends BaseController {
 
 	WorkApiService srv = WorkApiService.me;
@@ -478,8 +481,20 @@ public class WorkApiController extends BaseController {
      * }
      */
 	/*静态数据接口*/
+  LaborVenService sr =new LaborVenService();
 	public void getSurveillanceVideo(){
+
+//    if (getBusProject().equals("392")){
+//      log.info(sr.getSurveillanceVideo2("392").toJson());
+//      renderJson(sr.getSurveillanceVideo2("392"));
+////      renderJson("sss");
+//    }
+
 		Ret ret = srv.getSurveillanceVideo(getBusProject());
+//    System.out.println("project"+getBusProject());
+//    System.out.println("project2"+getProjectUser().getProject());
+
+    log.info(ret.toJson());
 		renderJson(ret);
 	}
 	

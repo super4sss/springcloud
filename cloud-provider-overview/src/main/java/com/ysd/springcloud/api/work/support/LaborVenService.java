@@ -101,6 +101,9 @@ public class LaborVenService implements LaborInterface{
 	public Ret getSurveillanceVideo(String project) {
 		return findMonitoring(project, TYPE_VE);
 	}
+	public Ret getSurveillanceVideo2(String project) {
+		return findMonitoring(project, TYPE_RS);
+	}
 
 	/**
 	 * 最近10天考勤统计

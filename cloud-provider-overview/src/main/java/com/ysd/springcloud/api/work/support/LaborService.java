@@ -5,6 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import com.jfinal.kit.Ret;
 import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.service.CacheService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 劳务对接服务
  */
+@Slf4j
 public class LaborService extends CacheService implements LaborInterface {
 	
 	public static final LaborService me = new LaborService();

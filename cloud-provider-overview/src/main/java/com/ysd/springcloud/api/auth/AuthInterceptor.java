@@ -12,6 +12,7 @@ import com.ysd.springcloud.common.controller.BaseController;
 import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.model.App;
 import com.ysd.springcloud.common.service.AppCacheService;
+import com.ysd.springcloud.kit.NetKit;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthInterceptor implements Interceptor {
 
   private App appDao = new App().dao();
-
+private NetKit netKit = new NetKit();
   @Override
 	public void intercept(Invocation inv) {
 		Controller c = inv.getController();
@@ -32,17 +33,23 @@ public class AuthInterceptor implements Interceptor {
 			c.renderJson(Ret.fail("unauthorized", "AuthToken不能为空"));
 			return;
 		}
-    System.out.println(token);
-    System.out.println("a"+request.getHeader("appid"));
     if (StrKit.notBlank(request.getHeader("appid"))){
       String appid =request.getHeader("appid");
+
 //      app = appDao.findById(appid);
-      token = Db.findFirst("select * from sys_app_token where appid=? ORDER BY loginat DESC",appid).get("authToken");
-      System.out.println(token);
+//      try {
+//        netKit.closeSSH();
+//        netKit.SSh();
+//      } catch (Exception e) {
+//        e.printStackTrace();
+//      }
+      System.out.println(appid);
+      token = Db.find("select * from sys_app_token where appid=? ORDER BY loginat DESC",appid).get(0).get("authToken");
+//      token = Db.find("select * from sys_app_token where appid=6 ORDER BY loginat DESC").get(0).get("authToken");
+
     }
 
 		UserPrincipal user = AppCacheService.me.getLoginUser(token);
-    System.out.println(request.getHeader("appid"));
 		if (ObjKit.empty(user)) {
 			c.renderJson(Ret.fail("unauthorized", "AuthToken无效"));
 			return;
