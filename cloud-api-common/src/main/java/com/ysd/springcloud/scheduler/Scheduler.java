@@ -20,7 +20,7 @@ public class Scheduler{
 @Autowired
   NetKit netKit;
   //每隔2秒执行一次
-  @Scheduled(fixedRate = 30000)
+  @Scheduled(fixedRate = 60000)
   public void testTasks() {
 //    System.out.println(PropKit.getBoolean("app.devMode"));
     if (PropKit.getBoolean("app.devMode")) {

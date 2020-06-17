@@ -483,12 +483,12 @@ public class WorkApiController extends BaseController {
 	/*静态数据接口*/
   LaborVenService sr =new LaborVenService();
 	public void getSurveillanceVideo(){
-
-//    if (getBusProject().equals("392")){
-//      log.info(sr.getSurveillanceVideo2("392").toJson());
-//      renderJson(sr.getSurveillanceVideo2("392"));
-////      renderJson("sss");
-//    }
+    System.out.println(getAttr("appid")+"***************************************");
+    if (getAttr("appid").equals("6")){
+      log.info(sr.getSurveillanceVideo2("392").toJson());
+      renderJson(sr.getSurveillanceVideo2("392"));
+      return;
+    }
 
 		Ret ret = srv.getSurveillanceVideo(getBusProject());
 //    System.out.println("project"+getBusProject());
