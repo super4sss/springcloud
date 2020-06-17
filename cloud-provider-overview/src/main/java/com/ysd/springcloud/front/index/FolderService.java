@@ -1,12 +1,5 @@
 package com.ysd.springcloud.front.index;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-
-import org.apache.commons.lang3.math.NumberUtils;
-
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Lists;
@@ -18,10 +11,18 @@ import com.ysd.springcloud.common.dto.FileDTO;
 import com.ysd.springcloud.common.kit.ObjKit;
 import com.ysd.springcloud.common.model.Folder;
 import com.ysd.springcloud.common.service.LfsService;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.math.NumberUtils;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 
 /**
  * 项目文件夹服务
  */
+@Slf4j
 public class FolderService {
 
 	public static final FolderService me = new FolderService();
@@ -55,6 +56,7 @@ public class FolderService {
 	}
 	
 	public String create(UserPrincipal user, String entity) {
+	  log.info("user:"+user.toString());
 		String pid = user.getDocument();
 		if (StrKit.isBlank(pid)) {
 			return null;
