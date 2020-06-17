@@ -20,15 +20,13 @@ import javax.servlet.http.HttpServletRequest;
  * 授权拦截器
  */
 public class AuthInterceptor implements Interceptor {
-//public  static String tokenRS = Db.find("select * from sys_app_token where appid=? ORDER BY loginat DESC",6).get(0).get("authToken");
-//public  static String tokenVE = Db.find("select * from sys_app_token where appid=? ORDER BY loginat DESC",4).get(0).get("authToken");
+
   private App appDao = new App().dao();
 private NetKit netKit = new NetKit();
   @Override
 	public void intercept(Invocation inv) {
 		Controller c = inv.getController();
 		HttpServletRequest request = c.getRequest();
-    request.setAttribute("appid", request.getHeader("appid"));
 		App app;
 		String token = getRequestToken(request);
 		if (StrKit.isBlank(token)) {
@@ -45,14 +43,9 @@ private NetKit netKit = new NetKit();
 //      } catch (Exception e) {
 //        e.printStackTrace();
 //      }
-//      System.out.println(appid);
-//        if (appid=="4"){
-//              token = tokenVE;
-//        }
-//        if (appid=="6"){
-//              token = tokenRS;
-//        }
-      token = Db.find("select * from sys_app_token where appid=6 ORDER BY loginat DESC").get(0).get("authToken");
+      System.out.println(appid);
+      token = Db.find("select * from sys_app_token where appid=? ORDER BY loginat DESC",appid).get(0).get("authToken");
+//      token = Db.find("select * from sys_app_token where appid=6 ORDER BY loginat DESC").get(0).get("authToken");
 
     }
 

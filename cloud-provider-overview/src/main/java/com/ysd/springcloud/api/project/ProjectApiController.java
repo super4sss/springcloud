@@ -366,7 +366,6 @@ public class ProjectApiController extends BaseController {
 	/*获取文件列表*/
 	public void getFileList(){
 		String pid = getPara("pid");
-    System.out.println(pid+"=====================================");
 		Boolean root =  getParaToBoolean("root", false);
 		Ret ret = srv.getFileList(pid, root, getBusProject());
 		renderJson(ret);

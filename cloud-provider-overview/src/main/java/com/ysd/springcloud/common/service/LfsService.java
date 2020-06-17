@@ -8,7 +8,6 @@ import com.jfinal.kit.StrKit;
 import com.jfinal.log.Log;
 import com.ysd.springcloud.common.kit.FileKit;
 import com.ysd.springcloud.common.kit.ObjKit;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -20,7 +19,7 @@ import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
 import java.util.Map;
-@Slf4j
+
 public class LfsService {
 
 	public static final LfsService me = new LfsService();
@@ -52,7 +51,6 @@ public class LfsService {
 	}
 	
 	public Ret getFiles(String pid) {
-    log.info("pid:"+pid);
 		return execute("/commdisk/getFiles.action?pid=" + pid);
 	}
 	
@@ -135,8 +133,6 @@ public class LfsService {
 		try {
 			Request req = Request.Get(url);
 			if (addCookie) req.addHeader("Cookie", genCookie());
-      log.info(url);
-      log.info(genCookie());
 			resp = req.execute().returnContent().asString();
 		} catch (Exception e) {
 			log.error("LFS请求异常", e);
@@ -152,7 +148,7 @@ public class LfsService {
 		if (!"SUCCESS".equals(obj)) {
 			return Ret.fail("msg", "对接LFS接口失败: " + map.get("msg"));
 		}
-		log.info(map.toString());
+		
 		return Ret.ok("data", map);
 	}
 	

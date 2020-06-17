@@ -19,7 +19,6 @@ import com.ysd.springcloud.common.model.Picture;
 import com.ysd.springcloud.common.page.Paginator;
 import com.ysd.springcloud.common.page.QueryHelper;
 import com.ysd.springcloud.common.service.LfsService;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.math.NumberUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 
@@ -32,7 +31,6 @@ import static java.util.stream.Collectors.toMap;
 /**
  * 项目数据服务
  */
-@Slf4j
 public class ProjectApiService {
 
 	public static final ProjectApiService me = new ProjectApiService();
@@ -171,7 +169,6 @@ public class ProjectApiService {
 			return Ret.fail("msg", "参数值错误，请重新输入");
 		}
 		List<FileDTO> lists = new ArrayList<>();
-    log.info("-----"+pid);
 		Ret ret = LfsService.me.getFiles(pid);
 		if(!ret.isOk()){
 			LogKit.warn("对接服务失败, " + ret);

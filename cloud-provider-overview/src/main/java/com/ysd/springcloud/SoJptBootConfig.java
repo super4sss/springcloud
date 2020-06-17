@@ -83,7 +83,6 @@ public class SoJptBootConfig extends SoJptConfig {
       dp = new DruidPlugin("jdbc:mysql://172.18.148.80:10010/ysd_overview?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC", "root", "prod1&2019$");
 
     }
-//    dp.setValidationQuery("select 1 from dual");
     dp.setValidationQuery("select 1 from dual");
     dp.addFilter(new StatFilter());
     dp.setDriverClass("com.mysql.jdbc.Driver");
